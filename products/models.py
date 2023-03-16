@@ -6,6 +6,9 @@ from django.utils import timezone
 class Category(models.Model):
     name = models.CharField(max_length = 100)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
 
@@ -20,7 +23,7 @@ class Product(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='available')
-    produced = models.DateTimeField(default=timezone.now())
+    produced = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default=False)    
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, default=1)
@@ -34,4 +37,4 @@ class Product(models.Model):
         ordering = ('-produced',)
     
     def __str__(self):
-        return self.title
+        return self.title 
