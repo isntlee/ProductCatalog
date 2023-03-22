@@ -18,13 +18,13 @@ function Header() {
 			<CssBaseline />
 			<AppBar
 				position="static"
-				color="white"
+				color="inherit"
 				elevation={0}
 				className={classes.appBar}
 			>
 				<Toolbar>
 					<Typography variant="h6" color="inherit" noWrap>
-						BlogmeUp
+						Blog me Up
 					</Typography>
 				</Toolbar>
 			</AppBar>
