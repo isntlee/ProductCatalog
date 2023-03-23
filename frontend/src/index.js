@@ -10,9 +10,9 @@ const routing = (
 	<Router>
 		<React.StrictMode>
 			<Header />
-			<Switch>
-				<Route exact path="/" component={App} />
-			</Switch>
+				<Switch>
+					<Route exact path="/" component={App} />
+				</Switch>
 			<Footer />
 		</React.StrictMode>
 	</Router>
