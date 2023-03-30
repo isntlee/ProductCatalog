@@ -1,6 +1,7 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 from products.models import Product
 from .serializers import ProductSerializer
 
@@ -8,9 +9,18 @@ from .serializers import ProductSerializer
 class ProductList(viewsets.ViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
+
+    def custom_filter(self, queryset):
+        search_param = self.request.query_params.get('search', None)
+        if search_param:
+            queryset = queryset.filter(Q(name__icontains=search_param))
+        return queryset
 
     def list(self, request):
-        serializer = self.serializer_class(self.queryset, many=True)
+        queryset = self.custom_filter(self.queryset)
+        serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
     
     def create(self, request):
