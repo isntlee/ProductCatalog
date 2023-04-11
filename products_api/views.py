@@ -10,12 +10,14 @@ class ProductList(viewsets.ViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name']
+    # search_fields = ['=slug'] 
 
     def custom_filter(self, queryset):
-        search_param = self.request.query_params.get('search', None)
+        # print(' ')
+        # print('request', self.request.__dict__)
+        search_param = self.request.query_params.get('search')
         if search_param:
-            queryset = queryset.filter(Q(name__icontains=search_param))
+            queryset = queryset.filter(Q(description__icontains=search_param))
         return queryset
 
     def list(self, request):
@@ -34,7 +36,7 @@ class ProductList(viewsets.ViewSet):
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        product = get_object_or_404(self.queryset, pk=pk)
+        product = get_object_or_404(self.queryset, slug=pk)
         serializer = ProductSerializer(product, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()

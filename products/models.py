@@ -21,7 +21,7 @@ class Product(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField()
     producer = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, unique_for_date='produced')
+    slug = models.SlugField(max_length=250)
     produced = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default=False)    
     category = models.ForeignKey(
