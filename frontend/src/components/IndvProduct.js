@@ -19,16 +19,11 @@ const useStyles = makeStyles((theme) => ({
 export default function IndvProduct() {
 	const { slug } = useParams();
 	const classes = useStyles();
-
 	const [data, setData] = useState({ product: [] });
 
 	useEffect(() => {
 		axiosInstance.get(slug).then((res) => {
 			setData({ product: res.data });
-			// Remember to take a good look about the code, to take out
-			console.log(res.data);
-			console.log(res.headers['content-length']);
-			console.log(res);
 		});
 	}, [slug, setData]);
 

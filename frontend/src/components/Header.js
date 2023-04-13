@@ -20,8 +20,8 @@ function Header() {
 
 	const goSearch = (e) => {
 		history.push({
-			pathname: '/product/',
-			search: data.search,
+			pathname: '/search/',
+			search: '?search=' + data.search,
 		});
 		window.location.reload();
 	};

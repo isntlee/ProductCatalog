@@ -10,11 +10,9 @@ class ProductList(viewsets.ViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
-    # search_fields = ['=slug'] 
+    search_fields = ['description'] 
 
     def custom_filter(self, queryset):
-        # print(' ')
-        # print('request', self.request.__dict__)
         search_param = self.request.query_params.get('search')
         if search_param:
             queryset = queryset.filter(Q(description__icontains=search_param))

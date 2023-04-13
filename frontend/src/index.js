@@ -6,6 +6,7 @@ import App from './App';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IndvProduct from './components/IndvProduct'
+import Search from './components/Search'
 
 const routing = (
 	<Router>
@@ -14,6 +15,7 @@ const routing = (
 				<Switch>
 					<Route exact path="/" component={App} />
 					<Route path="/product/:slug" component={IndvProduct} />
+					<Route path="/search/" component={Search} />
 				</Switch>
 			<Footer />
 		</React.StrictMode>
