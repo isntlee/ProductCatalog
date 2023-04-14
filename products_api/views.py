@@ -1,5 +1,6 @@
 from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from products.models import Product
@@ -23,15 +24,19 @@ class ProductList(viewsets.ViewSet):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
     
-    def create(self, request):
-        serializer = self.serializer_class(self.queryset)
-        return Response(serializer.data)
-
     def retrieve(self, request, **kwargs):
         item = self.kwargs.get('pk')
         product = get_object_or_404(self.queryset, slug=item)
         serializer = self.serializer_class(product)
         return Response(serializer.data)
+    
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return ValidationError(serializer.errors)
 
     def update(self, request, pk=None):
         product = get_object_or_404(self.queryset, slug=pk)
@@ -40,9 +45,9 @@ class ProductList(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return ValidationError(serializer.errors)
         
     def destroy(self, request, pk=None):
-        product = get_object_or_404(self.queryset, pk=pk)
-        serializer = self.serializer_class(product)
-        return Response(serializer.data)
+        product = get_object_or_404(self.queryset, slug=pk)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

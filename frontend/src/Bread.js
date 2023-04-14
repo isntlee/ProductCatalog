@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Products from './components/products/Products';
+import Products from './components/bread/Products';
 import ProductLoadingComponent from './components/products/ProductLoading';
 import axiosInstance from './axios';
 
-function App() {
+function Admin() {
 	const ProductLoading = ProductLoadingComponent(Products);
 	const [appState, setAppState] = useState({
-		loading: false,
+		loading: true,
 		products: null,
 	});
 
 	useEffect(() => {
 		axiosInstance.get().then((res) => {
-			const allPosts = res.data;
-			setAppState({ loading: false, products: allPosts });
+			const allProducts = res.data;
+			setAppState({ loading: false, products: allProducts });
+			console.log(res.data);
 		});
 	}, [setAppState]);
+
 	return (
 		<div className="App">
 			<h1>Latest Products</h1>
@@ -24,4 +26,4 @@ function App() {
 		</div>
 	);
 }
-export default App;
+export default Admin;
