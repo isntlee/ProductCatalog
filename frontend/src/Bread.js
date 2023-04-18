@@ -4,7 +4,10 @@ import Products from './components/bread/Products';
 import ProductLoadingComponent from './components/products/ProductLoading';
 import axiosInstance from './axios';
 
-function Admin() {
+function Bread() {
+    console.log(' ')
+    console.log('Bread - got here')
+    console.log(' ')
 	const ProductLoading = ProductLoadingComponent(Products);
 	const [appState, setAppState] = useState({
 		loading: true,
@@ -26,4 +29,4 @@ function Admin() {
 		</div>
 	);
 }
-export default Admin;
+export default Bread;

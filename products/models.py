@@ -23,7 +23,7 @@ class Product(models.Model):
     producer = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
     produced = models.DateTimeField(default=timezone.now)
-    active = models.BooleanField(default=False)    
+    active = models.BooleanField(default=True)    
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, default=1)
     objects = models.Manager()

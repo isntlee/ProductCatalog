@@ -8,19 +8,19 @@ from .serializers import ProductSerializer
 
 
 class ProductList(viewsets.ViewSet):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['description'] 
 
-    def custom_filter(self, queryset):
+    def get_queryset(self):
+        queryset = Product.objects.all()
         search_param = self.request.query_params.get('search')
         if search_param:
             queryset = queryset.filter(Q(description__icontains=search_param))
         return queryset
 
     def list(self, request):
-        queryset = self.custom_filter(self.queryset)
+        queryset = self.get_queryset()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
     
