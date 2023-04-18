@@ -83,14 +83,14 @@ const Products = (props) => {
 											<TableCell align="left">
 												<Link
 													color="textPrimary"
-													href={'/bread/edit/' + product.id}
+													href={'edit/' + product.slug}
 													className={classes.link}
 												>
 													<EditIcon></EditIcon>
 												</Link>
 												<Link
 													color="textPrimary"
-													href={'delete/' + product.id}
+													href={'delete/' + product.slug}
 													className={classes.link}
 												>
 													<DeleteForeverIcon></DeleteForeverIcon>

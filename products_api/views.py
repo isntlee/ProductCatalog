@@ -20,13 +20,12 @@ class ProductList(viewsets.ViewSet):
         return queryset
 
     def list(self, request):
-        queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many=True)
+        serializer = self.serializer_class(self.get_queryset(), many=True)
         return Response(serializer.data)
     
     def retrieve(self, request, **kwargs):
         item = self.kwargs.get('pk')
-        product = get_object_or_404(self.queryset, slug=item)
+        product = get_object_or_404(self.get_queryset(), slug=item)
         serializer = self.serializer_class(product)
         return Response(serializer.data)
     
@@ -39,7 +38,7 @@ class ProductList(viewsets.ViewSet):
             return ValidationError(serializer.errors)
 
     def update(self, request, pk=None):
-        product = get_object_or_404(self.queryset, slug=pk)
+        product = get_object_or_404(self.get_queryset(), slug=pk)
         serializer = ProductSerializer(product, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -48,6 +47,6 @@ class ProductList(viewsets.ViewSet):
             return ValidationError(serializer.errors)
         
     def destroy(self, request, pk=None):
-        product = get_object_or_404(self.queryset, slug=pk)
+        product = get_object_or_404(self.get_queryset(), slug=pk)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

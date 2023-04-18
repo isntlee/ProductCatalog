@@ -73,7 +73,7 @@ const Products = (props) => {
 												component="p"
 												color="textPrimary"
 											></Typography>
-											<Typography variant="p" color="textSecondary">
+											<Typography variant="subtitle1" color="textSecondary">
 												{product.description.substr(0, 60)}...
 											</Typography>
 										</div>

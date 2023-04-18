@@ -142,7 +142,7 @@ export default function Create() {
 								autoComplete="description"
 								onChange={handleChange}
 								multiline
-								rows={4}
+								minRows={4}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -169,7 +169,7 @@ export default function Create() {
 								autoComplete="producer"
 								onChange={handleChange}
 								multiline
-								rows={4}
+								minRows={4}
 							/>
 						</Grid>
 					</Grid>
