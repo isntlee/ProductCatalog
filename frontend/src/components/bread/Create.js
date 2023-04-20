@@ -11,11 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-
-// console.log(' ')
-// console.log('Create #1 - got here')
-// console.log(' ')
-
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -38,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Create() {
 
-    // console.log(' ')
-    // console.log('Create #2 - got here')
-    // console.log(' ')
-
 	function slugify(string) {
 		const a =
 			'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
@@ -62,11 +53,6 @@ export default function Create() {
 	}
 
 	const history = useHistory();
-
-    // console.log(' ')
-    // console.log('Create #3 - got here')
-    // console.log(' ')
-
 	const initialFormData = Object.freeze({
 		name: '',
 		slug: '',

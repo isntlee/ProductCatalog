@@ -49,7 +49,6 @@ export default function Create() {
 				['slug']: res.data.slug,
 				['producer']: res.data.producer,
 			});
-			console.log(res.data);
 		});
 	}, [updateFormData]);
 
@@ -63,8 +62,6 @@ export default function Create() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
-
 		axiosInstance.put(`/` + id + '/', {
 			name: formData.name,
 			slug: formData.slug,

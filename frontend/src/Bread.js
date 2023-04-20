@@ -5,9 +5,7 @@ import ProductLoadingComponent from './components/products/ProductLoading';
 import axiosInstance from './axios';
 
 function Bread() {
-    console.log(' ')
-    console.log('Bread - got here')
-    console.log(' ')
+
 	const ProductLoading = ProductLoadingComponent(Products);
 	const [appState, setAppState] = useState({
 		loading: true,
@@ -18,7 +16,6 @@ function Bread() {
 		axiosInstance.get().then((res) => {
 			const allProducts = res.data;
 			setAppState({ loading: false, products: allProducts });
-			console.log(res.data);
 		});
 	}, [setAppState]);
 

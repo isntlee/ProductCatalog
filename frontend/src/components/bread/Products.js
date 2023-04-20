@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Products = (props) => {
 	const { products } = props;
-	console.log(' ')
-    console.log('Products - got here')
-    console.log(' ')
 	const classes = useStyles();
 	if (!products || products.length === 0) return <p>Can not find any products, sorry</p>;
 	return (
