@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchBar from 'material-ui-search-bar';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -36,7 +37,7 @@ function Header() {
 			>
 				<Toolbar>
 					<Typography variant="h6" color="inherit" noWrap>
-						Blog me Up
+					Blaxploitation
 					</Typography>
 
 					<SearchBar
@@ -44,6 +45,13 @@ function Header() {
 						onChange={(newValue) => setData({ search: newValue })}
 						onRequestSearch={() => goSearch(data.search)}
 					/>
+					<Button
+						href={'/bread'}
+						variant="contained"
+						color="primary"
+					>
+						Add, Edit & Delete
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

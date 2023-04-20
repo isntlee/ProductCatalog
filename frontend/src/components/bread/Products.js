@@ -106,7 +106,7 @@ const Products = (props) => {
 											variant="contained"
 											color="primary"
 										>
-											New Product
+											Add 
 										</Button>
 									</TableCell>
 								</TableRow>

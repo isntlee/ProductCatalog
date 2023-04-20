@@ -24,7 +24,7 @@ function Bread() {
 
 	return (
 		<div className="App">
-			<h1>Latest Products</h1>
+			<h1>Latest Films</h1>
 			<ProductLoading isLoading={appState.loading} products={appState.products} />
 		</div>
 	);
