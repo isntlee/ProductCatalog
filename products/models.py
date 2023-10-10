@@ -11,9 +11,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
 
-    # Nesting model manager within model makes me nervous
     class ProductObjects(models.Manager):
         def get_queryset(self):
             return super().get_queryset().filter(active=True)
@@ -23,12 +23,12 @@ class Product(models.Model):
     producer = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
     produced = models.DateTimeField(default=timezone.now)
-    active = models.BooleanField(default=True)    
+    active = models.BooleanField(default=True)
+    objects = models.Manager()
+    productobjects = ProductObjects()    
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, default=1)
-    objects = models.Manager()
-    productobjects = ProductObjects()
-
+    
     class Meta:
         ordering = ('-produced',)
     
